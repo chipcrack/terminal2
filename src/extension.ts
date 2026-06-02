@@ -40,8 +40,23 @@ function createStatusBarItem(context: vscode.ExtensionContext) {
   );
 
   statusBarItem.command = 'terminal2.toggle';
-  statusBarItem.text = '$(terminal) Terminal2';
-  statusBarItem.tooltip = 'Terminal2: Mostrar terminal integrada';
+
+  // Mantiene el ícono original de terminal
+  statusBarItem.text = '$(terminal)';
+
+  // Tooltip mejorado
+  statusBarItem.tooltip = [
+    'Terminal2',
+    '',
+    'Click: mostrar terminal integrada',
+    'Atajo: Cmd + Alt + T'
+  ].join('\n');
+
+  // Fondo resaltado permitido por VS Code
+  statusBarItem.backgroundColor = new vscode.ThemeColor(
+    'statusBarItem.warningBackground'
+  );
+
   statusBarItem.show();
 
   context.subscriptions.push(statusBarItem);
