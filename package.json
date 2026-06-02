@@ -1,0 +1,124 @@
+{
+  "name": "terminal2",
+  "displayName": "Terminal2",
+  "description": "Acceso directo a la terminal para Visual Studio Code",
+  "version": "0.0.1",
+  "publisher": "angelo-lopez",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chipcrack/terminal2.git"
+  },
+  "icon": "images/logo.png",
+  "engines": {
+    "vscode": "^1.119.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "Terminal",
+    "Shell",
+    "Bash",
+    "CMD",
+    "PowerShell",
+    "ZSH"
+  ],
+  "activationEvents": [
+    "*",
+    "onCommand:terminal2.run",
+    "onCommand:terminal2.stop",
+    "onCommand:terminal2.open",
+    "onCommand:terminal2.toggle"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "terminal2.run",
+        "title": "Terminal2: Run Terminal Command"
+      },
+      {
+        "command": "terminal2.stop",
+        "title": "Terminal2: Stop Terminal Command"
+      },
+      {
+        "command": "terminal2.open",
+        "title": "Terminal2: Open in Integrated Terminal"
+      },
+      {
+        "command": "terminal2.toggle",
+        "title": "Terminal2: Toggle Integrated Terminal"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "terminal2.run",
+        "key": "ctrl+alt+r",
+        "mac": "cmd+alt+r"
+      },
+      {
+        "command": "terminal2.stop",
+        "key": "ctrl+alt+c",
+        "mac": "cmd+alt+c"
+      },
+      {
+        "command": "terminal2.open",
+        "key": "ctrl+alt+o",
+        "mac": "cmd+alt+o"
+      },
+      {
+        "command": "terminal2.toggle",
+        "key": "ctrl+alt+t",
+        "mac": "cmd+alt+t"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "!inOutput",
+          "command": "terminal2.open",
+          "group": "navigation@1"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "terminal2.open",
+          "group": "navigation@1"
+        }
+      ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "Terminal2 configuration",
+      "properties": {
+        "terminal2.defaultCommand": {
+          "type": "string",
+          "default": "",
+          "description": "Comando por defecto para ejecutar en la terminal."
+        },
+        "terminal2.terminalName": {
+          "type": "string",
+          "default": "Terminal2",
+          "description": "Nombre de la terminal integrada creada por la extensión."
+        },
+        "terminal2.clearBeforeRun": {
+          "type": "boolean",
+          "default": false,
+          "description": "Limpia la terminal antes de ejecutar un comando."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.41",
+    "@types/vscode": "^1.119.0",
+    "@vscode/vsce": "^3.6.0",
+    "typescript": "^5.9.0"
+  }
+}
